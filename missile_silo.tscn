@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6fjx643jcana"]
+
+[ext_resource type="Script" path="res://missile_silo.gd" id="1_auslt"]
+
+[node name="MissileSilo" type="Node3D"]
+script = ExtResource("1_auslt")
+terrain_layer = 4096
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(0.09, 0, 0, 0, 0.09, 0, 0, 0, 0.09, 0, 0, 0)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="CSGBox3D"]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGBox3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.519155, 0)
+radius = 0.381214
+height = 0.397506
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGBox3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.765533, 0)
+radius = 0.160447
+height = 1.1397

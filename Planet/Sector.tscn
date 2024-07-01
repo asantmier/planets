@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://hhrc30a4caox"]
+
+[ext_resource type="Script" path="res://Planet/Sector.gd" id="1_58c7r"]
+
+[node name="Sector" type="CollisionShape3D"]
+script = ExtResource("1_58c7r")
+
+[node name="LODs" type="Node3D" parent="."]

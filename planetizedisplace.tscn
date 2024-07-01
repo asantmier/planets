@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://sqsqvi6h7ttw"]
+
+[ext_resource type="Material" uid="uid://dnc01wvtx22p2" path="res://Planet/terrain.material" id="1_8xs3v"]
+[ext_resource type="ArrayMesh" uid="uid://pol3cwhs606t" path="res://Demo Scene Resources/planetizedisplace.tres" id="2_4v5md"]
+[ext_resource type="Material" uid="uid://kkj4wipcj2cp" path="res://Planet/ocean.material" id="3_ksqtj"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_i41mn"]
+material = ExtResource("3_ksqtj")
+radius = 1.0
+height = 2.0
+
+[node name="Planetizedisplace" type="MeshInstance3D"]
+transform = Transform3D(-0.0905283, 0, 0.995894, 0, 1, 0, -0.995894, 0, -0.0905283, -0.198371, -0.0128805, -4.03718)
+material_override = ExtResource("1_8xs3v")
+mesh = ExtResource("2_4v5md")
+
+[node name="Ocean" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_i41mn")

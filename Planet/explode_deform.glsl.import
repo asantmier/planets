@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://dbek687ekbkwl"
+path="res://.godot/imported/explode_deform.glsl-a84f59a666888430b60bdba3808e1e6e.res"
+
+[deps]
+
+source_file="res://Planet/explode_deform.glsl"
+dest_files=["res://.godot/imported/explode_deform.glsl-a84f59a666888430b60bdba3808e1e6e.res"]
+
+[params]
+

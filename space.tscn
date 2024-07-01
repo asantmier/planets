@@ -1,0 +1,301 @@
+[gd_scene load_steps=15 format=3 uid="uid://c7kw5yaydgvk3"]
+
+[ext_resource type="Script" path="res://SunLight.gd" id="1_iamee"]
+[ext_resource type="Script" path="res://space.gd" id="1_n14vg"]
+[ext_resource type="Script" path="res://SelectionRing.gd" id="3_hc570"]
+[ext_resource type="Script" path="res://CameraOrbit.gd" id="3_vrbn7"]
+[ext_resource type="Material" uid="uid://ccqsseo4p7cwp" path="res://hologram.material" id="4_j5re7"]
+[ext_resource type="Script" path="res://LoadingBox.gd" id="4_upx55"]
+[ext_resource type="Material" uid="uid://brxa06expoy0i" path="res://hologram_faint.material" id="5_cut8v"]
+[ext_resource type="Script" path="res://PlanetClick.gd" id="5_yysag"]
+[ext_resource type="Material" uid="uid://dh0nbynrrxkff" path="res://reticle.material" id="6_18oab"]
+[ext_resource type="Script" path="res://AimReticle.gd" id="6_028x1"]
+[ext_resource type="Script" path="res://CameraRoot.gd" id="6_jvdxd"]
+[ext_resource type="Script" path="res://ZoomUnfocusMeter.gd" id="8_1kxde"]
+[ext_resource type="Script" path="res://ComponentsValue.gd" id="10_u42ag"]
+[ext_resource type="Script" path="res://SectorPanel.gd" id="11_6ydcn"]
+
+[node name="Space" type="Node3D"]
+script = ExtResource("1_n14vg")
+planet_count = 2
+
+[node name="SunLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.615662, 0.333028, -0.71418, 0, 0.906308, 0.422618, 0.788011, -0.26019, 0.557979, 0, 0, 2.3095)
+shadow_enabled = true
+script = ExtResource("1_iamee")
+
+[node name="SelectionRing" type="CSGCombiner3D" parent="."]
+script = ExtResource("3_hc570")
+inner_scale = 0.95
+
+[node name="Outer" type="CSGPolygon3D" parent="SelectionRing"]
+depth = 0.1
+material = ExtResource("4_j5re7")
+
+[node name="Inner" type="CSGPolygon3D" parent="SelectionRing"]
+operation = 2
+polygon = PackedVector2Array(0.1, 0.1, 0.1, 0.9, 0.9, 0.9, 0.9, 0.1)
+depth = 0.1
+material = ExtResource("4_j5re7")
+
+[node name="HoverRing" type="CSGCombiner3D" parent="."]
+material_override = ExtResource("5_cut8v")
+script = ExtResource("3_hc570")
+inner_scale = 0.95
+
+[node name="Outer" type="CSGPolygon3D" parent="HoverRing"]
+depth = 0.1
+
+[node name="Inner" type="CSGPolygon3D" parent="HoverRing"]
+operation = 2
+polygon = PackedVector2Array(0.1, 0.1, 0.1, 0.9, 0.9, 0.9, 0.9, 0.1)
+depth = 0.1
+
+[node name="AimReticle" type="CSGCombiner3D" parent="."]
+script = ExtResource("6_028x1")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="AimReticle"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+radius = 0.01
+height = 0.6
+material = ExtResource("6_18oab")
+
+[node name="CameraRoot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.23388, 0, 1.13908)
+script = ExtResource("6_jvdxd")
+
+[node name="CameraOrbit" type="Node3D" parent="CameraRoot"]
+script = ExtResource("3_vrbn7")
+rotation_speed = 0.25
+zoom_speed = 0.1
+
+[node name="Camera3D" type="Camera3D" parent="CameraRoot/CameraOrbit"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HUD" type="Control" parent="GUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="GUI/HUD"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.0
+offset_right = 63.0
+offset_bottom = 47.0
+grow_horizontal = 2
+
+[node name="ComponentsValue" type="Label" parent="GUI/HUD/PanelContainer"]
+layout_mode = 2
+text = "number"
+script = ExtResource("10_u42ag")
+
+[node name="LoadingBox" type="Control" parent="GUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_upx55")
+
+[node name="PanelContainer" type="PanelContainer" parent="GUI/LoadingBox"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -123.0
+offset_top = -50.0
+offset_right = 177.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/LoadingBox/PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/LoadingBox/PanelContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="GUI/LoadingBox/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Loading..."
+
+[node name="Slider" type="HSlider" parent="GUI/LoadingBox/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+max_value = 1.0
+step = 0.0
+editable = false
+
+[node name="Description" type="Label" parent="GUI/LoadingBox/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Doing task"
+
+[node name="PlanetClick" type="Control" parent="GUI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_yysag")
+
+[node name="PanelContainer" type="PanelContainer" parent="GUI/PlanetClick"]
+layout_mode = 2
+offset_right = 40.0
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/PlanetClick/PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Button" type="Button" parent="GUI/PlanetClick/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Focus"
+
+[node name="ZoomUnfocusMeter" type="Control" parent="GUI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -357.0
+offset_top = -80.26
+offset_right = 357.0
+offset_bottom = -40.26
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("8_1kxde")
+
+[node name="PanelContainer" type="PanelContainer" parent="GUI/ZoomUnfocusMeter"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/ZoomUnfocusMeter/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="HSlider" type="HSlider" parent="GUI/ZoomUnfocusMeter/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+tick_count = 10
+ticks_on_borders = true
+
+[node name="Timer" type="Timer" parent="GUI/ZoomUnfocusMeter"]
+one_shot = true
+
+[node name="SectorPanel" type="Control" parent="GUI"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -67.0
+offset_top = -20.0
+offset_right = -27.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("11_6ydcn")
+
+[node name="PanelContainer" type="PanelContainer" parent="GUI/SectorPanel"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/SectorPanel/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/SectorPanel/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GUI/SectorPanel/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Sector #"
+
+[node name="AddTurret" type="Button" parent="GUI/SectorPanel/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Add Turret"
+
+[node name="AddMissile" type="Button" parent="GUI/SectorPanel/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Add Missile"
+
+[node name="AddPD" type="Button" parent="GUI/SectorPanel/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Add PD"
+
+[node name="AddFactory" type="Button" parent="GUI/SectorPanel/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Add Factory"
+
+[node name="AimTurret" type="Button" parent="GUI/SectorPanel/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Aim Turret"
+
+[node name="CancelAim" type="Button" parent="GUI/SectorPanel/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Cancel"
+
+[connection signal="ended_aiming" from="." to="GUI/SectorPanel" method="_on_space_ended_aiming"]
+[connection signal="zoom_exceeded" from="CameraRoot/CameraOrbit" to="GUI/ZoomUnfocusMeter" method="_on_camera_orbit_zoom_exceeded"]
+[connection signal="done_loading" from="GUI/LoadingBox" to="." method="_on_loading_box_done_loading"]
+[connection signal="focused_planet" from="GUI/PlanetClick" to="CameraRoot" method="_on_planet_click_focused_planet"]
+[connection signal="focused_planet" from="GUI/PlanetClick" to="CameraRoot/CameraOrbit" method="_on_planet_click_focused_planet"]
+[connection signal="pressed" from="GUI/PlanetClick/PanelContainer/VBoxContainer/Button" to="GUI/PlanetClick" method="_on_button_pressed"]
+[connection signal="filled" from="GUI/ZoomUnfocusMeter" to="CameraRoot" method="_on_zoom_unfocus_meter_filled"]
+[connection signal="filled" from="GUI/ZoomUnfocusMeter" to="CameraRoot/CameraOrbit" method="_on_zoom_unfocus_meter_filled"]
+[connection signal="timeout" from="GUI/ZoomUnfocusMeter/Timer" to="GUI/ZoomUnfocusMeter" method="_on_timer_timeout"]
+[connection signal="aimed" from="GUI/SectorPanel" to="." method="_on_sector_panel_aimed"]
+[connection signal="pressed" from="GUI/SectorPanel/PanelContainer/MarginContainer/VBoxContainer/AddTurret" to="GUI/SectorPanel" method="_on_add_turret_pressed"]
+[connection signal="pressed" from="GUI/SectorPanel/PanelContainer/MarginContainer/VBoxContainer/AddMissile" to="GUI/SectorPanel" method="_on_add_missile_pressed"]
+[connection signal="pressed" from="GUI/SectorPanel/PanelContainer/MarginContainer/VBoxContainer/AddPD" to="GUI/SectorPanel" method="_on_add_pd_pressed"]
+[connection signal="pressed" from="GUI/SectorPanel/PanelContainer/MarginContainer/VBoxContainer/AddFactory" to="GUI/SectorPanel" method="_on_add_factory_pressed"]
+[connection signal="pressed" from="GUI/SectorPanel/PanelContainer/MarginContainer/VBoxContainer/AimTurret" to="GUI/SectorPanel" method="_on_aim_turret_pressed"]
+[connection signal="pressed" from="GUI/SectorPanel/PanelContainer/MarginContainer/VBoxContainer/CancelAim" to="GUI/SectorPanel" method="_on_cancel_aim_pressed"]

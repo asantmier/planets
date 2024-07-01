@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://brbaxukxg25gl"]
+
+[ext_resource type="Script" path="res://point_defense.gd" id="1_jsjrd"]
+
+[node name="point_defense" type="Node3D"]
+script = ExtResource("1_jsjrd")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(0.09, 0, 0, 0, 0.09, 0, 0, 0, 0.09, 0, 0, 0)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="CSGBox3D"]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGBox3D/CSGCombiner3D"]
+transform = Transform3D(0.299391, 0.954131, 0, -0.954131, 0.299391, 0, 0, 0, 1, 0.358151, 0.687495, 0.136254)
+radius = 0.0639464
+height = 0.550226
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="CSGBox3D/CSGCombiner3D"]
+transform = Transform3D(0.299391, 0.954131, 0, -0.954131, 0.299391, 0, 0, 0, 1, 0.358151, 0.687495, -0.122453)
+radius = 0.0639464
+height = 0.550226
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGBox3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.623294, 0)
+radius = 0.34715
+height = 0.322277

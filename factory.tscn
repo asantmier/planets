@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://ceg1dnr0bsata"]
+
+[ext_resource type="Script" path="res://Factory.gd" id="1_mnfy7"]
+
+[node name="Factory" type="Node3D"]
+script = ExtResource("1_mnfy7")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(0.09, 0, 0, 0, 0.09, 0, 0, 0, 0.09, 0, 0, 0)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="CSGBox3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.650835, 0.0617676)
+size = Vector3(0.761963, 0.316162, 0.654785)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGBox3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.211833, 0.675393, -0.275807)
+radius = 0.079103
+height = 0.824359
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGBox3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0282808, 0.675393, -0.275807)
+radius = 0.079103
+height = 0.824359
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGBox3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.258292, 0.589839, -0.251079)
+size = Vector3(0.333069, 0.238647, 0.303101)

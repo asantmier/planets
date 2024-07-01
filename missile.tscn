@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhjkiq7hp3cb0"]
+
+[ext_resource type="Script" path="res://missile.gd" id="1_3veoj"]
+
+[node name="Missile" type="Node3D"]
+script = ExtResource("1_3veoj")
+speed = 0.03
+turn_speed_rad = 0.06
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+transform = Transform3D(0.07, 0, 0, 0, -3.0598e-09, -0.07, 0, 0.07, -3.0598e-09, 0, 0, 0)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D"]
+radius = 0.285544
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.892607, 0)
+radius = 0.135598
+height = 0.726867
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.967109, 0)
+radius = 0.0551714
+height = 1.3819

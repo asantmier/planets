@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://brfxpnamrpys0"
+path="res://.godot/imported/comp_normals.glsl-75dd7e58f278f218b562b138ffc7c0d9.res"
+
+[deps]
+
+source_file="res://comp_normals.glsl"
+dest_files=["res://.godot/imported/comp_normals.glsl-75dd7e58f278f218b562b138ffc7c0d9.res"]
+
+[params]
+

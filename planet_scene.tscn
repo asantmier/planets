@@ -1,0 +1,148 @@
+[gd_scene load_steps=34 format=3 uid="uid://ct3e1brcl5lu6"]
+
+[ext_resource type="Script" path="res://Planet.gd" id="1_dmgjx"]
+[ext_resource type="Script" path="res://Planet/Icosphere.gd" id="1_p7m6d"]
+[ext_resource type="Shader" path="res://Planet/terrain.gdshader" id="2_eshoe"]
+[ext_resource type="Texture2D" uid="uid://yupdfivvd0od" path="res://Planet/terrain/Bedrock/Rock022_1K-PNG_AmbientOcclusion.png" id="3_cny6l"]
+[ext_resource type="Texture2D" uid="uid://cvfsxiv83h04f" path="res://Planet/terrain/Bedrock/Rock022_1K-PNG_NormalGL.png" id="4_5fpja"]
+[ext_resource type="Texture2D" uid="uid://b8pj7cglyj2ls" path="res://Planet/terrain/Bedrock/Rock022_1K-PNG_Roughness.png" id="5_thfpi"]
+[ext_resource type="Script" path="res://Planet/TerrainGrid.gd" id="6_m6knx"]
+[ext_resource type="Texture2D" uid="uid://dnkpsdxuye15g" path="res://Planet/terrain/Bedrock/Rock022_1K-PNG_Color.png" id="6_vjiq7"]
+[ext_resource type="Texture2D" uid="uid://bkhdmpmyuxph4" path="res://Planet/terrain/Cliff/Rock051_1K-PNG_AmbientOcclusion.png" id="7_1yxtu"]
+[ext_resource type="Texture2D" uid="uid://desgpjcnr3xs5" path="res://Planet/terrain/Cliff/Rock051_1K-PNG_NormalGL.png" id="8_60j0s"]
+[ext_resource type="Texture2D" uid="uid://bs02kqy1k2xo3" path="res://Planet/terrain/Cliff/Rock051_1K-PNG_Roughness.png" id="9_vivr5"]
+[ext_resource type="Texture2D" uid="uid://1fadhi6sl8b1" path="res://Planet/terrain/Cliff/Rock051_1K-PNG_Color.png" id="10_y4cs7"]
+[ext_resource type="Texture2D" uid="uid://dbch1axpuqban" path="res://Planet/terrain/Dirty Ground/Ground046_1K-PNG_AmbientOcclusion.png" id="11_bdwwk"]
+[ext_resource type="Texture2D" uid="uid://fuvrnpcwe21o" path="res://Planet/terrain/Dirty Ground/Ground046_1K-PNG_NormalGL.png" id="12_msnwi"]
+[ext_resource type="Texture2D" uid="uid://dqd5jv12tl2e8" path="res://Planet/terrain/Dirty Ground/Ground046_1K-PNG_Roughness.png" id="13_gmhek"]
+[ext_resource type="Texture2D" uid="uid://c2rkbb8hdog2m" path="res://Planet/terrain/Dirty Ground/Ground046_1K-PNG_Color.png" id="14_ejyws"]
+[ext_resource type="Material" uid="uid://kkj4wipcj2cp" path="res://Planet/ocean.material" id="14_nho2q"]
+[ext_resource type="Texture2D" uid="uid://bkd1dgb3l2n1i" path="res://Planet/terrain/Grass/Grass004_1K-PNG_AmbientOcclusion.png" id="15_aju1a"]
+[ext_resource type="Texture2D" uid="uid://gul3u6coina7" path="res://Planet/terrain/Grass/Grass004_1K-PNG_NormalGL.png" id="16_k6f6c"]
+[ext_resource type="Texture2D" uid="uid://bd3jtovql3l7h" path="res://Planet/terrain/Grass/Grass004_1K-PNG_Roughness.png" id="17_db6vq"]
+[ext_resource type="Texture2D" uid="uid://ccga82rn2nl5g" path="res://Planet/terrain/Grass/Grass004_1K-PNG_Color.png" id="18_k1gnb"]
+[ext_resource type="Texture2D" uid="uid://x57eywx0sa57" path="res://Planet/terrain/Sand/Ground033_1K-PNG_AmbientOcclusion.png" id="19_yddcv"]
+[ext_resource type="Texture2D" uid="uid://bgiq06lrwwi5i" path="res://Planet/terrain/Sand/Ground033_1K-PNG_NormalGL.png" id="20_g0itg"]
+[ext_resource type="Texture2D" uid="uid://fiqsnjosslep" path="res://Planet/terrain/Sand/Ground033_1K-PNG_Roughness.png" id="21_7x3el"]
+[ext_resource type="Texture2D" uid="uid://ioasg150k6pe" path="res://Planet/terrain/Sand/Ground033_1K-PNG_Color.png" id="22_37pmx"]
+[ext_resource type="Texture2D" uid="uid://dj2q5etr3qhci" path="res://Planet/terrain/Snow/Snow010A_1K-PNG_AmbientOcclusion.png" id="23_i116t"]
+[ext_resource type="Texture2D" uid="uid://biyxdc2thckqo" path="res://Planet/terrain/Snow/Snow010A_1K-PNG_NormalGL.png" id="24_0cjbr"]
+[ext_resource type="Texture2D" uid="uid://bna8qm7h1j7ni" path="res://Planet/terrain/Snow/Snow010A_1K-PNG_Roughness.png" id="25_ksmx7"]
+[ext_resource type="Texture2D" uid="uid://dwy7tv55if3h" path="res://Planet/terrain/Snow/Snow010A_1K-PNG_Color.png" id="26_2yygl"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_dbjyu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ps2qb"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_eshoe")
+shader_parameter/snow_height = 1.06
+shader_parameter/mountain_height = 1.04
+shader_parameter/grass_height = 1.01
+shader_parameter/shore_height = 0.98
+shader_parameter/biome_blend = 0.01
+shader_parameter/biome_smooth_start = 0.0
+shader_parameter/biome_smooth_end = 1.0
+shader_parameter/triplanar_blend_offset = 0.173
+shader_parameter/triplanar_blend_exponent = 2.221
+shader_parameter/cliff_steepness = 0.921
+shader_parameter/cliff_radius = 0.2
+shader_parameter/smooth_cliffs = true
+shader_parameter/cliff_biome_color_tweak = 1.0
+shader_parameter/crater_border = null
+shader_parameter/sector_lods = PackedInt32Array()
+shader_parameter/craters = PackedFloat32Array()
+shader_parameter/mountain_color = Color(0.690196, 0.819608, 0.901961, 1)
+shader_parameter/grass_color = Color(0.843137, 0.960784, 0.811765, 1)
+shader_parameter/grass_scale = 8.0
+shader_parameter/grass_tex = ExtResource("18_k1gnb")
+shader_parameter/grass_normal_map = ExtResource("16_k6f6c")
+shader_parameter/grass_roughness = ExtResource("17_db6vq")
+shader_parameter/grass_ao_map = ExtResource("15_aju1a")
+shader_parameter/shore_color = Color(0.952941, 0.905882, 0.831373, 1)
+shader_parameter/sand_scale = 8.0
+shader_parameter/sand_tex = ExtResource("22_37pmx")
+shader_parameter/sand_normal_map = ExtResource("20_g0itg")
+shader_parameter/sand_roughness = ExtResource("21_7x3el")
+shader_parameter/sand_ao_map = ExtResource("19_yddcv")
+shader_parameter/snow_color = Color(0.870588, 0.870588, 0.870588, 1)
+shader_parameter/snow_scale = 16.0
+shader_parameter/snow_tex = ExtResource("26_2yygl")
+shader_parameter/snow_normal_map = ExtResource("24_0cjbr")
+shader_parameter/snow_roughness = ExtResource("25_ksmx7")
+shader_parameter/snow_ao_map = ExtResource("23_i116t")
+shader_parameter/bedrock_color = Color(0.690196, 0.74902, 0.803922, 1)
+shader_parameter/bedrock_scale = 8.0
+shader_parameter/bedrock_tex = ExtResource("6_vjiq7")
+shader_parameter/bedrock_normal_map = ExtResource("4_5fpja")
+shader_parameter/bedrock_roughness = ExtResource("5_thfpi")
+shader_parameter/bedrock_ao_map = ExtResource("3_cny6l")
+shader_parameter/cliff_color = Color(1, 1, 1, 1)
+shader_parameter/cliff_scale = 8.0
+shader_parameter/cliff_tex = ExtResource("10_y4cs7")
+shader_parameter/cliff_normal_map = ExtResource("8_60j0s")
+shader_parameter/cliff_roughness_map = ExtResource("9_vivr5")
+shader_parameter/cliff_ao_map = ExtResource("7_1yxtu")
+shader_parameter/crater_color = Color(0.988235, 0.984314, 0.984314, 1)
+shader_parameter/crater_scale = 8.0
+shader_parameter/crater_tex = ExtResource("14_ejyws")
+shader_parameter/crater_normal_map = ExtResource("12_msnwi")
+shader_parameter/crater_roughness_map = ExtResource("13_gmhek")
+shader_parameter/crater_ao_map = ExtResource("11_bdwwk")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_khf51"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_i41mn"]
+material = ExtResource("14_nho2q")
+radius = 1.0
+height = 2.0
+
+[node name="planet scene" type="Node3D"]
+script = ExtResource("1_dmgjx")
+
+[node name="Earth" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_dbjyu")
+script = ExtResource("1_p7m6d")
+terrain_material = SubResource("ShaderMaterial_ps2qb")
+
+[node name="HexGrid" type="MeshInstance3D" parent="Earth"]
+mesh = SubResource("ArrayMesh_khf51")
+
+[node name="Ocean" type="MeshInstance3D" parent="Earth"]
+mesh = SubResource("SphereMesh_i41mn")
+
+[node name="TerrainGrid" type="Area3D" parent="Earth"]
+collision_layer = 4096
+collision_mask = 0
+script = ExtResource("6_m6knx")
+planet_path = NodePath("../..")
+num_craters = 0
+radius_min = 0.01
+radius_max = 0.2
+rim_width = 0.6
+rim_steepness = 0.35
+smoothness = 0.3
+size_distribution = 0.5
+ocean_floor_depth = 0.5
+ocean_depth_multiplier = 4.0
+mountain_blend = 1.0
+continent_scale = 0.8
+continent_elevation = 0.02
+mountain_num_layers = 5
+mountain_lacunarity = 3.0
+mountain_scale = 1.51
+mountain_elevation = 0.05
+mountain_gain = 1.705
+mask_num_layers = 3
+mask_scale = 0.575
+mask_elevation = 1.0
+mask_vertical_shift = -0.135
+global_radius = 0.2
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="."]
+update_position = false
+update_rotation = false
+update_scale = false
+
+[connection signal="input_event" from="Earth/TerrainGrid" to="Earth/TerrainGrid" method="_on_input_event"]
+[connection signal="sector_input" from="Earth/TerrainGrid" to="." method="_on_terrain_grid_sector_input"]

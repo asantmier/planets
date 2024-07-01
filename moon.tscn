@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://cuor5sa805soh"]
+
+[ext_resource type="Script" path="res://Planet/Icosphere.gd" id="1_pl6q5"]
+[ext_resource type="Script" path="res://PlanetVisual.gd" id="2_yad78"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_dbjyu"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_lk5mv"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_khf51"]
+
+[node name="Moon" type="MeshInstance3D"]
+visible = false
+mesh = SubResource("ArrayMesh_dbjyu")
+script = ExtResource("1_pl6q5")
+
+[node name="PlanetVisual" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_lk5mv")
+script = ExtResource("2_yad78")
+num_craters = 453
+radius_min = 0.01
+radius_max = 0.22
+rim_width = 0.59
+rim_steepness = 0.38
+smoothness = 0.34
+size_distribution = 0.576
+r_persistence = 0.44
+r_scale = 1.655
+r_power = 2.99
+r_elevation = 0.03
+s_scale = 0.61
+s_elevation = 0.23
+s_offset = Vector3(0.24, 3.355, -0.515)
+det_r_scale = 4.765
+det_r_elevation = 0.01
+det_s_scale = 4.43
+det_s_elevation = 0.01
+
+[node name="HexGrid" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("ArrayMesh_khf51")
